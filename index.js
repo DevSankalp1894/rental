@@ -7,7 +7,10 @@
    app.use(cors());
 
    app.post("/login" , async(req , res) => {
-            console.log(req.body);
+          
+            const {flatname , password} = req.body;
+           
+            if(flatname == "123" && password=="456"){
         try{
                  const userData = new loginModel(req.body);
                  await userData.save(); 
@@ -16,10 +19,15 @@
            catch(err){
               console.log(err.message)
            }
+            }else {
+                 res.send("Invalid credential")
+            }
    })
 
 
-   app.listen(3000 , async() => {
+
+
+   app.listen(4500 , async() => {
        try{
             await connection
             console.log("db is connected")
@@ -27,5 +35,5 @@
        catch(err){
                 console.log(err.message);
        }
-       console.log("server is running on port 3000")
+       console.log("server is running on port 4500")
    })
