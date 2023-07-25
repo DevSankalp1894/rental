@@ -4,8 +4,8 @@
    const loginModel = require("./model/model")
    app.use(express.json());
    const cors= require("cors");
-   app.use(cors);
-   
+   app.use(cors());
+
    app.post("/login" , async(req , res) => {
             console.log(req.body);
         try{
