@@ -14,18 +14,15 @@
         try{
                  const userData = new loginModel(req.body);
                  await userData.save(); 
-                 res.send("User data successfully added");
+                 res.send({msg:"User data successfully added"});
            }
            catch(err){
               console.log(err.message)
            }
             }else {
-                 res.send("Invalid credential")
+                 res.send({msg:"Invalid credential"})
             }
    })
-
-
-
 
    app.listen(4500 , async() => {
        try{
