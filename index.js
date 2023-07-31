@@ -44,18 +44,13 @@ app.get("/tenants" , async(req , res) => {
        }
 })
 
- app.delete("tenants/delete/:tenantID" , async(req , res) => {
+ app.delete("/tenants/delete/:tenantID" , async(req , res) => {
        const {tenantID} = req.params;
        
         try {
-         let data = await PostModel.findByIdAndDelete({_id:tenantID});
-          if(data.length > 0){
+         let data = await TableModel.findByIdAndDelete({_id:tenantID});
+          
                  res.send(data);
-          }
-
-          else {
-              res.send({"msg" : "No tenant data add post first"})
-          }
         }
 
        catch(err) {
@@ -63,16 +58,14 @@ app.get("/tenants" , async(req , res) => {
        }
   })
 
-  app.patch("tenants/update/:tenantID" , async(req , res) => {
-      const {tenantID} = req.params;
+  app.put("/tenants/update/:tenantID" , async(req , res) => {
+      const tenantID = req.params.tenantID;
+      console.log(tenantID);
        try {
-        let data = await PostModel.findByIdAndUpdate({_id:tenantID} , req.body);
-         if(data.length > 0){
+        let data = await TableModel.findByIdAndUpdate({_id:tenantID} , req.body);
+         
           res.send({msg:"Data updated successfully"});
-         }
-       else {
-             res.send({"msg" : "No post add Note first"})
-         }
+         
        }
 
       catch(err) {
@@ -90,3 +83,5 @@ app.listen(4500, async () => {
   }
   console.log("server is running on port 4500");
 });
+
+ 
